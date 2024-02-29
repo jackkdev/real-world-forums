@@ -12,4 +12,6 @@ pretty_env_logger = "0.5.0"
 serde = { version = "1.0.197", features = ["derive"] }
 thiserror = "1.0.57"
 tokio = { version = "1.36.0", features = ["full"] }
-sqlx = { version = "0.7.3", features = ["runtime-tokio", "mysql"] }
+sqlx = { version = "0.7.3", features = ["runtime-tokio", "mysql", "chrono"] }
+chrono = { version = "0.4.34", features = ["serde"] }
+tracing = "0.1.40"
