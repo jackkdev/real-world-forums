@@ -21,6 +21,7 @@ impl Config {
 pub struct WebConfig {
     pub host: String,
     pub port: u16,
+    pub secret: String,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]

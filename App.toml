@@ -1,6 +1,7 @@
 [web]
 host = "0.0.0.0"
 port = 8080
+secret = "penis"
 
 [database]
 url = "mysql://root:secret@127.0.0.1:3306/forums"

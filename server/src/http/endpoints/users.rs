@@ -1,8 +1,8 @@
-use axum::{extract::State, routing::post, Json, Router};
-use serde::{Deserialize, Serialize};
+use axum::Router;
 
-use crate::http::{context::Context, error::Result};
+use crate::http::Context;
 
+/// Exports the router for this module.
 pub fn router() -> Router<Context> {
     Router::new()
 }

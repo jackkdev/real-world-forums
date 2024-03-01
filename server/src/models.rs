@@ -11,6 +11,8 @@ pub struct User {
 
     pub username: String,
 
+    pub password: String,
+
     #[serde(with = "ts_nanoseconds")]
     pub created_at: DateTime<Utc>,
     #[serde(with = "ts_nanoseconds")]
