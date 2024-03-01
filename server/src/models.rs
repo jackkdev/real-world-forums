@@ -7,7 +7,7 @@ use sqlx::{
 
 #[derive(Debug, FromRow, Serialize, Deserialize)]
 pub struct User {
-    pub id: u64,
+    pub id: i32,
 
     pub username: String,
 

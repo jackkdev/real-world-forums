@@ -3,8 +3,8 @@ use axum::{extract::State, routing::post, Router};
 use base64::prelude::*;
 use chrono::Utc;
 use password_hash::{PasswordHash, Salt};
-use rand::RngCore;
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 use crate::{
     http::{extractors::Json, Context, Error, Result},
@@ -81,11 +81,15 @@ async fn register(
     };
 
     // Generate the password hash.
-    let mut salt = [0u8; 16];
-    rand::thread_rng().fill_bytes(&mut salt);
-    let salt = BASE64_STANDARD.encode(&salt);
-
-    let hash = PasswordHash::generate(Argon2::default(), payload.password, Salt::from_b64(&salt)?)?;
+    let salt = Uuid::new_v4();
+    let salt = salt.to_string();
+    let mut salt_buf = String::new();
+    BASE64_STANDARD.encode_string(salt, &mut salt_buf);
+    let hash = PasswordHash::generate(
+        Argon2::default(),
+        payload.password,
+        Salt::from_b64(salt_buf.as_str())?,
+    )?;
 
     // Create the new user record.
     let now = Utc::now();
